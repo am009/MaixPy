@@ -11,6 +11,8 @@ menu "Board config"
 			bool "Select board m5stick"
 		config BOARD_TWATCH
 			bool "Select board TWatch"
+		config BOARD_AIRVR3
+			bool "Select board AIRVr3"
 	endchoice
 
 	config LCD_DEFAULT_WIDTH
