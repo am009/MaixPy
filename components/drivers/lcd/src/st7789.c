@@ -49,7 +49,7 @@ void tft_hard_init(uint32_t freq, bool oct)
         // sysctl_set_spi0_dvp_data(1);
         spi_init(SPI_CHANNEL, standard_work_mode, SPI_FF_STANDARD, 8, 0);
     }
-    else
+    else // here
     {
         /* Init SPI IO map and function settings */
         // sysctl_set_spi0_dvp_data(0);

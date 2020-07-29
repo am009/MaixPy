@@ -95,7 +95,11 @@ static mp_obj_t py_lcd_init(size_t n_args, const mp_obj_t *pos_args, mp_map_t *k
 {
 	int ret = 0;
 	uint16_t color = BLACK;
+	#ifdef CONFIG_BOARD_AIRVR3
+	uint16_t offset_w = 52, offset_h = 40, offset_w2 = 40, offset_h2 = 52;
+	#else
 	uint16_t offset_w = 0, offset_h = 0, offset_w2 = 0, offset_h2 = 0;
+	#endif
     py_lcd_deinit();
 	enum { 
 		ARG_type,
@@ -167,6 +171,13 @@ static mp_obj_t py_lcd_init(size_t n_args, const mp_obj_t *pos_args, mp_map_t *k
 				fpioa_set_function(36, FUNC_SPI0_SS0+LCD_SPI_SLAVE_SELECT);
 				fpioa_set_function(39, FUNC_SPI0_SCLK);
 				ret = lcd_init(args[ARG_freq].u_int, true, 0, 0 ,0 ,0 , true, width_curr, height_curr);
+			#elif defined(CONFIG_BOARD_AIRVR3)
+				// backlight_init = false;
+				// fpioa_set_function(21, FUNC_GPIOHS0 + RST_GPIONUM);
+				fpioa_set_function(38, FUNC_GPIOHS0 + DCX_GPIONUM);
+				fpioa_set_function(37, FUNC_SPI0_SS0+LCD_SPI_SLAVE_SELECT);
+				fpioa_set_function(39, FUNC_SPI0_SCLK);
+				ret = lcd_init(args[ARG_freq].u_int, false, offset_w, offset_h, offset_w2, offset_h2, args[ARG_invert].u_int!=1, width_curr, height_curr);
 			#else
 				// backlight_init = false;
 				fpioa_set_function(37, FUNC_GPIOHS0 + RST_GPIONUM);
