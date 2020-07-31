@@ -117,9 +117,15 @@ STATIC mp_obj_t Maix_i2s_channel_config(size_t n_args, const mp_obj_t *pos_args,
     static const mp_arg_t allowed_args[] = {
         { MP_QSTR_channel, MP_ARG_INT, {.u_int = I2S_CHANNEL_0} },
         { MP_QSTR_mode, MP_ARG_INT, {.u_int = I2S_RECEIVER} },
+        #ifdef CONFIG_BOARD_AIRVR3
+        { MP_QSTR_resolution, MP_ARG_KW_ONLY | MP_ARG_INT, {.u_int = RESOLUTION_24_BIT} },
+        { MP_QSTR_cycles, MP_ARG_KW_ONLY | MP_ARG_INT, {.u_int = SCLK_CYCLES_32} },
+        { MP_QSTR_align_mode, MP_ARG_KW_ONLY | MP_ARG_INT, {.u_int = LEFT_JUSTIFYING_MODE} },
+        #else
         { MP_QSTR_resolution, MP_ARG_KW_ONLY | MP_ARG_INT, {.u_int = RESOLUTION_16_BIT} },
         { MP_QSTR_cycles, MP_ARG_KW_ONLY | MP_ARG_INT, {.u_int = SCLK_CYCLES_32} },
         { MP_QSTR_align_mode, MP_ARG_KW_ONLY | MP_ARG_INT, {.u_int = STANDARD_MODE} },
+        #endif
     };
     mp_arg_val_t args[MP_ARRAY_SIZE(allowed_args)];
     mp_arg_parse_all(n_args-1, pos_args+1, kw_args, MP_ARRAY_SIZE(allowed_args), allowed_args, args);
