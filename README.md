@@ -6,11 +6,13 @@ learning...
 ## feature:
 - 1.14 inch screen supported!
 - microphone useable
+- more stable camera (probably)
 
 ## TODO:
+I only purchased single board with on board 1.14 inch screen, with a single ov2640 camera, so support for any other hardware is not planned.(unless I have one)
 
-- try using git tag and github release
-- 放上blog文章链接
+- check out led.
+- learn how to use nncase.
 
 ## Build
 
@@ -30,8 +32,12 @@ sudo tar -Jxvf kendryte-toolchain-ubuntu-amd64-8.2.0-20190409.tar.xz -C /opt
 
 2. change directory to projects/maixpy_airvr3 and execute `python3 ./project.py build`
 
+## camera
+When the camera is not properly working, it always works for me to put the board under the cold air of air-conditioner. So I guess this issue is due to overheat of ov2640.
+Frame rate is mainly throttled by lcd dispaly, so I half the frame rate in sensor register configuration to increase stability.
+
 ## microphone
-example
+This is the example with microphone config. now default configuration is changed for airvr3, so some parameter in rx.channel_config can be emitted.
 ```
 from Maix import GPIO, I2S, FFT
 import image
