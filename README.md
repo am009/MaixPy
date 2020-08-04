@@ -11,8 +11,10 @@ learning...
 ## TODO:
 I only purchased single board with on board 1.14 inch screen, with a single ov2640 camera, so support for any other hardware is not planned.(unless I have one)
 
+
 - check out led.
 - learn how to use nncase.
+- frequently rebase and follow up maixpy code.
 
 ## Build
 
