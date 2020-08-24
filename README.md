@@ -82,3 +82,10 @@ for i in range(400):
 
 player.finish()
 ```
+
+## 维护日志
+目标: 经常rebase代码, 和Maixpy保持一致, 并且把自己的改动commits放在rebase之后.
+每次先更新一下自己本地的sipeed的master分支, 然后使用rebase -i master直接把所有commit都rebase过去
+然后再加入新的代码
+
+遇到修改了project/maixpy_k210的情况, 先stash, 再使用rsync -a /maixpy_k210/ /maixpy_airvr3/, 再看git里面的changes, 把改了的地方commit.
