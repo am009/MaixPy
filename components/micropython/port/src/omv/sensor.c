@@ -391,7 +391,11 @@ int sensor_init_dvp(mp_int_t freq, bool default_freq)
 	fpioa_set_function(47, FUNC_CMOS_PCLK);
 	fpioa_set_function(46, FUNC_CMOS_XCLK);
 	fpioa_set_function(45, FUNC_CMOS_HREF);
+	#ifdef CONFIG_BOARD_AIRVR3
+	fpioa_set_function(13, FUNC_CMOS_PWDN);
+	#else
 	fpioa_set_function(44, FUNC_CMOS_PWDN);
+	#endif
 	fpioa_set_function(43, FUNC_CMOS_VSYNC);
 	fpioa_set_function(42, FUNC_CMOS_RST);
     

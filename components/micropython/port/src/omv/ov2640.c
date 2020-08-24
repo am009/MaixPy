@@ -28,14 +28,10 @@ static const uint8_t ov2640_default[][2] = { //k210
 	{0x2e, 0xdf},
 	{0xff, 0x01},
 	{0x3c, 0x32},
-#ifdef CONFIG_BOARD_AIRVR3
-    {0x11, 0x01}, // half fps for stability
-#else
 	{0x11, 0x00},
-#endif
 	{0x09, 0x02},
 #ifdef CONFIG_BOARD_AIRVR3
-    {0x04, 0x28}, // unset hmirror for back camera
+	{0x04, 0x28}, // unset hmirror for back camera
 #else
 	{0x04, 0xa8},//v flip and h mirro
 #endif
