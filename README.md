@@ -6,14 +6,12 @@ learning...
 ## feature:
 - 1.14 inch screen supported!
 - microphone useable
-- more stable camera (probably)
+- ov2640 camera supported!
 
 ## TODO:
-I only purchased single board with on board 1.14 inch screen, with a single ov2640 camera, so support for any other hardware is not planned.(unless I have one)
+I only purchased single board with on board 1.14 inch screen, with a single ov2640 camera, so support for any other hardware is not planned.
 
-
-- check out led.
-- learn how to use nncase.
+- learn audio recognition
 - frequently rebase and follow up maixpy code.
 
 ## Build
@@ -35,8 +33,7 @@ sudo tar -Jxvf kendryte-toolchain-ubuntu-amd64-8.2.0-20190409.tar.xz -C /opt
 2. change directory to projects/maixpy_airvr3 and execute `python3 ./project.py build`
 
 ## camera
-When the camera is not properly working, it always works for me to put the board under the cold air of air-conditioner. So I guess this issue is due to overheat of ov2640.
-Frame rate is mainly throttled by lcd dispaly, so I half the frame rate in sensor register configuration to increase stability.
+camera is fine now. support OV2640
 
 ## microphone
 This is the example with microphone config. now default configuration is changed for airvr3, so some parameter in rx.channel_config can be emitted.
@@ -88,4 +85,5 @@ player.finish()
 每次先更新一下自己本地的sipeed的master分支, 然后使用rebase -i master直接把所有commit都rebase过去
 然后再加入新的代码
 
+遇到git submodule出问题的情况, 就执行git submodule update --remote --recursive 会把每个子模块都pull, 然后执行git submodule update --recursive --init会切换好对应的commit
 遇到修改了project/maixpy_k210的情况, 先stash, 再使用rsync -a /maixpy_k210/ /maixpy_airvr3/, 再看git里面的changes, 把改了的地方commit.
